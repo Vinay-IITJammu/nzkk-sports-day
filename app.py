@@ -4,8 +4,8 @@ import pandas as pd
 # Load data
 df = pd.read_csv("data.csv")
 
-# Logo and title
-st.image("assets/logo.jpg", width=120)
+# Display logo and title
+st.image("logo.jpg", width=120)
 st.title("New Zealand Kannada Koota Sports Day - 2025")
 
 # Sidebar filters
