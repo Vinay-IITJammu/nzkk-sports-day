@@ -1,5 +1,21 @@
-Sport,Name,Category,Event Type,Date of Entry,Amount Paid,Payment Status
-Carrom,Suhas Shanbhogue,Adult,Singles,2025-06-15,15,Completed
-Carrom,Anika Mohan,Junior,Doubles,2025-06-16,10,Completed
-Table Tennis,Manoj Hegde,Adult,Singles,2025-06-20,20,Completed
-Chess,Skanda Prasad,Junior,Rapid,2025-06-22,10,Completed
+Sport,Category,Adult Singles,Adult Doubles,Junior Singles,Junior Doubles
+Carrom,Tournament,Suhas Shanbhogue,Suhas Shanbhogue,Skanda Prasad,Anjana
+Carrom,Tournament,Manu Mohan,Manu Mohan,Saburi Manu,Saburi Manu
+Carrom,Tournament,Jyothsna Rao,Jyothsna Rao,Maanya Reddy,Maanya Reddy
+Carrom,Tournament,Venkatesh Nagaraj,Venkatesh Nagaraj,Nithya Anegondi,Nithya Anegondi
+Carrom,Tournament,Manoj,Manoj,Anika Mohan,Anika Mohan
+Carrom,Tournament,Adarsh Jayappa,Adarsh Jayappa,Adhithya Chandan,Adithya Chandan
+Carrom,Tournament,Arpitha Viswakarma,Arpitha Viswakarma,,
+Carrom,Tournament,Manjula,Manjula,,
+Carrom,Tournament,Abhishek Das,Anil Mohan,,
+Carrom,Tournament,Pramod Kurudumale,Pramod Kurudumale,,
+Carrom,Tournament,Ranjana Sathish,Ranjana Sathish,,
+Carrom,Tournament,Ananth MR,Ananth MR,,
+Carrom,Tournament,Shashidhara,Shashidhara,,
+Carrom,Tournament,Raghavendra K,Raghavendra K,,
+Carrom,Tournament,Raj Anegodi,Raj Anegondi,,
+Carrom,Tournament,Vinoth,Vinoth,,
+Carrom,Tournament,Shalini,Pooja Hegde,,
+Carrom,Tournament,Vivek Rajashekar,Vivek Rajashekar,,
+Carrom,Tournament,Bhavana KN,,,
+Carrom,Tournament,Sandeep GN,,,
