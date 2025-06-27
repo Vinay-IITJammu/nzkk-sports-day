@@ -10,28 +10,22 @@ st.title("New Zealand Kannada Koota Sports Day - 2025")
 
 # Sidebar filters
 with st.sidebar:
-    st.header("🎯 Filter Participants")
-    event_filter = st.multiselect("Select Event", df["Event"].unique())
-    gender_filter = st.multiselect("Select Gender", df["Gender"].unique())
-    category_filter = st.multiselect("Select Category", df["Category"].unique())
-    payment_status = st.multiselect("Payment Status", df["Payment Status"].unique())
+    st.header("🎯 Filter Tournament Entries")
+    sport_filter = st.multiselect("Select Sport", df["Sport"].unique())
+    name_filter = st.text_input("Search Name")
 
     if st.button("Clear Filters"):
         st.experimental_rerun()
 
 # Apply filters
 filtered_df = df.copy()
-if event_filter:
-    filtered_df = filtered_df[filtered_df["Event"].isin(event_filter)]
-if gender_filter:
-    filtered_df = filtered_df[filtered_df["Gender"].isin(gender_filter)]
-if category_filter:
-    filtered_df = filtered_df[filtered_df["Category"].isin(category_filter)]
-if payment_status:
-    filtered_df = filtered_df[filtered_df["Payment Status"].isin(payment_status)]
+if sport_filter:
+    filtered_df = filtered_df[filtered_df["Sport"].isin(sport_filter)]
+if name_filter:
+    filtered_df = filtered_df[filtered_df.apply(lambda row: row.astype(str).str.contains(name_filter, case=False).any(), axis=1)]
 
-st.subheader("📋 Filtered Participants")
-st.dataframe(filtered_df)
+st.subheader("📋 Tournament Entries")
+st.dataframe(filtered_df, use_container_width=True)
 
 st.markdown("---")
-st.markdown("Created by **Group 2, PGDCS-2, IIT Jammu**")
+st.markdown("✅ Created by **EC, NZKK**")
