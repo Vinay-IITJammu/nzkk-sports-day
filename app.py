@@ -1,47 +1,37 @@
 import streamlit as st
 import pandas as pd
+import json
+from PIL import Image
 
-st.set_page_config(page_title="NZKK Sports Day 2025", layout="wide")
+# Load logo and event details
+logo = Image.open("logo.jpg")
+with open("event_metadata.json", "r") as f:
+    event_info = json.load(f)
 
-df = pd.read_csv("data.csv")
+# Load data
+df = pd.read_csv("nzkk_sports_entries.csv")
 
-# Logo and event info
-st.image("logo.jpg", width=120)
-st.title("New Zealand Kannada Koota - Sports Day 2025")
-st.markdown("📅 **Date:** Sunday, 14 July 2025")
-st.markdown("📍 **Location:** Action Indoor Sports, Takanini")
-st.markdown("⏰ **Time:** 9:00 AM – 6:00 PM")
-st.markdown("---")
+# Sidebar
+st.sidebar.image(logo, width=120)
+st.sidebar.markdown(f"### 📍 {event_info['Event Address']}")
+st.sidebar.markdown(f"### 🕗 {event_info['Event Timing']}")
+
+# Title
+st.title(event_info["Event Name"])
 
 # Filters
-with st.expander("🔍 Filter Participants", expanded=True):
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        sport = st.multiselect("Select Sport", df["Sport"].unique())
-    with col2:
-        category = st.multiselect("Select Category", df["Category"].unique())
-    with col3:
-        name_search = st.text_input("Search by Name")
+sports = st.multiselect("Select Sport(s):", options=sorted(df["Sport"].unique()), default=sorted(df["Sport"].unique()))
+categories = st.multiselect("Select Category:", options=sorted(df["Category"].unique()), default=sorted(df["Category"].unique()))
+search_name = st.text_input("Search by Name (partial allowed):")
 
-    clear = st.button("Clear Filters")
-    if clear:
-        st.experimental_rerun()
+# Filter logic
+filtered_df = df[df["Sport"].isin(sports) & df["Category"].isin(categories)]
+if search_name:
+    filtered_df = filtered_df[filtered_df["Name"].str.contains(search_name, case=False, na=False)]
 
-# Apply filters
-filtered = df.copy()
-if sport:
-    filtered = filtered[filtered["Sport"].isin(sport)]
-if category:
-    filtered = filtered[filtered["Category"].isin(category)]
-if name_search:
-    filtered = filtered[filtered["Name"].str.contains(name_search, case=False)]
+# Display
+st.dataframe(filtered_df, use_container_width=True)
 
-st.subheader("📋 Registered Participants")
-st.dataframe(filtered, use_container_width=True)
-
-# Download
-csv = filtered.to_csv(index=False).encode('utf-8')
-st.download_button("📥 Download Filtered Data", data=csv, file_name="filtered_participants.csv", mime="text/csv")
-
+# Footer
 st.markdown("---")
-st.markdown("✅ Created by **EC, NZKK**")
+st.markdown("**Created by EC, NZKK**")
